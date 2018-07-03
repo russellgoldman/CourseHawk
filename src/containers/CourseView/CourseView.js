@@ -3,6 +3,7 @@ import { Text, View, ScrollView } from 'react-native';
 var jsonQuery = require('json-query');
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+import BannerContainer from '../../common/BannerContainer';
 
 const letters = /^[A-Z]+$/;
 class CourseView extends Component {
@@ -208,20 +209,25 @@ class CourseView extends Component {
       courseDesc,
       reqDict,
     } = this.props;
-    const { informationContainer } = styles;
+    const { informationContainer, bannerContainerStyle } = styles;
 
     return (
-      <ScrollView style={informationContainer}>
-        <View style={{ marginTop: '2.5%' }}></View>
-        {this._renderKeyValue('Course Name', courseName)}
-        {this._renderKeyValue('Course Offering', courseOffering)}
-        {this._renderKeyValue('Course Credit', courseCredit)}
-        {this._renderKeyValue('Lecture Hours', lectureHours)}
-        {this._renderKeyValue('Lab Hours', labHours)}
-        {this._renderKeyValue('Course Description', courseDesc)}
-        {this._renderRequirements(reqDict)}
-        <View style={{ marginBottom: '7.5%' }}></View>
-      </ScrollView>
+      <View style={{ flex: 1 }}>
+        <ScrollView style={informationContainer}>
+          <View style={{ marginTop: '2.5%' }}></View>
+          {this._renderKeyValue('Course Name', courseName)}
+          {this._renderKeyValue('Course Offering', courseOffering)}
+          {this._renderKeyValue('Course Credit', courseCredit)}
+          {this._renderKeyValue('Lecture Hours', lectureHours)}
+          {this._renderKeyValue('Lab Hours', labHours)}
+          {this._renderKeyValue('Course Description', courseDesc)}
+          {this._renderRequirements(reqDict)}
+          <View style={{ marginBottom: '7.5%' }}></View>
+        </ScrollView>
+        <View style={bannerContainerStyle}>
+          <BannerContainer />
+        </View>
+      </View>
     );
   }
 }
@@ -232,6 +238,10 @@ const styles = {
     backgroundColor: '#5b01c4',
     paddingLeft: '7.5%',
     paddingRight: '7.5%',
+  },
+  bannerContainerStyle: {
+    flex: 1,
+    justifyContent: 'flex-end',
   },
   keyStyle: {
     flex: 1,

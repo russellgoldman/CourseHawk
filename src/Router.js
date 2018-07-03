@@ -4,6 +4,7 @@ import DepartmentList from './containers/CourseList/DepartmentList';
 import CourseView from './containers/CourseView/CourseView';
 import SearchView from './containers/SearchView/SearchView';
 import UserPanel from './containers/UserPanel/UserPanel';
+import Filter from './containers/SearchView/Filter';
 import { search, user, close, filter, back } from '../assets/images';
 
 /* Notes:
@@ -62,7 +63,7 @@ const RouterComponent = () => {
         </Scene>
         <Scene key="filterView">
           <Scene key="filter"
-            component={SearchView}
+            component={Filter}
             leftButtonImage={back}
             leftButtonIconStyle={{ height: 20, width: 20, marginLeft: 5, marginRight: 5 }}
             onLeft={ () => Actions.pop() }

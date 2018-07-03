@@ -1,14 +1,32 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import BannerContainer from '../../common/BannerContainer';
 
 class UserPanel extends Component {
   render() {
+    const { userPanelView, bannerContainerStyle } = styles;
+
     return (
       <View style={{ flex: 1 }}>
-        <Text style={{ flex: 1 }}>UserPanel</Text>
+        <View style={userPanelView}>
+          <Text style={{ flex: 1 }}>User Settings</Text>
+        </View>
+        <View style={bannerContainerStyle}>
+          <BannerContainer />
+        </View>
       </View>
     );
   }
 }
+
+const styles = {
+  userPanelView: {
+    flex: 8.7,
+  },
+  bannerContainerStyle: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+};
 
 export default UserPanel;
