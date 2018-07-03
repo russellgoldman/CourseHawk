@@ -27,27 +27,12 @@ const RouterComponent = () => {
             rightButtonImage={search}
             rightButtonIconStyle={{ height: 22.5, width: 22.5, marginLeft: 5, marginRight: 5 }}
             onLeft={ () => Actions.userPanel({ title: 'User Settings' }) }
-            onRight={ () => Actions.searchView({ title: 'Search / Filter Courses' }) }
+            onRight={ () => Actions.search({ title: 'Search / Filter Courses' }) }
             initial
           />
           <Scene key="userPanel"
             component={UserPanel}
             leftButtonImage={close}
-            leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
-            onLeft={ () => Actions.pop() }
-          />
-          <Scene key="searchView"
-            component={SearchView}
-            leftButtonImage={close}
-            leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
-            rightButtonImage={filter}
-            rightButtonIconStyle={{ height: 21, width: 21, marginLeft: 5, marginRight: 5 }}
-            onLeft={ () => Actions.pop() }
-            onRight={ () => Actions.filterView({ title: 'Filter Options' }) }
-          />
-          <Scene key="filter"
-            component={SearchView}
-            leftButtonImage={back}
             leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
             onLeft={ () => Actions.pop() }
           />
@@ -61,7 +46,17 @@ const RouterComponent = () => {
             sceneStyle={{ backgroundColor: '#34026F' }}
           />
         </Scene>
-        <Scene key="filterView">
+        <Scene key="search" modal={true}>
+          <Scene key="searchView"
+            component={SearchView}
+            leftButtonImage={close}
+            leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
+            rightButtonImage={filter}
+            rightButtonIconStyle={{ height: 21, width: 21, marginLeft: 5, marginRight: 5 }}
+            onLeft={ () => Actions.pop() }
+            onRight={ () => Actions.filter({ title: 'Filter Options' }) }
+            initial
+          />
           <Scene key="filter"
             component={Filter}
             leftButtonImage={back}

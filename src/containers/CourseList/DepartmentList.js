@@ -103,7 +103,7 @@ class DepartmentList extends Component {
           forceUpdate();
         }}
       >
-        <View>
+        <View key={Math.random() * Math.random()}>
           <View style={departmentContainer}>
             <Text style={departmentText}>{department}</Text>
             {_renderArrow(department)}

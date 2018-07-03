@@ -222,7 +222,7 @@ class CourseView extends Component {
           {this._renderKeyValue('Lab Hours', labHours)}
           {this._renderKeyValue('Course Description', courseDesc)}
           {this._renderRequirements(reqDict)}
-          <View style={{ marginBottom: '7.5%' }}></View>
+          <View style={{ marginBottom: '20%' }}></View>
         </ScrollView>
         <View style={bannerContainerStyle}>
           <BannerContainer />
