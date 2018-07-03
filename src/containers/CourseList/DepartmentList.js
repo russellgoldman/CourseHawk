@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import CourseListGrid from './CourseListGrid';
 import { collapseArrow, expandArrow } from '../../../assets/images';
 import { selectDepartment, spinnerVisible } from '../../actions';
+import BannerContainer from '../../common/BannerContainer';
 
 var globalDepartment = '';
 const visible = false;
@@ -115,15 +116,20 @@ class DepartmentList extends Component {
   }
 
   render() {
-    const { flatListContainer } = styles;
+    const { flatListContainer, bannerContainerStyle } = styles;
 
     return (
-      <View style={flatListContainer}>
-        <FlatList
-          style={{ marginTop: '7.5%' }}
-          data={departmentArray}
-          renderItem={this.renderDepartment}
-        />
+      <View style={{ flex: 1 }}>
+        <View style={flatListContainer}>
+          <FlatList
+            style={{ marginTop: '7.5%' }}
+            data={departmentArray}
+            renderItem={this.renderDepartment}
+          />
+        </View>
+        <View style={bannerContainerStyle}>
+          <BannerContainer />
+        </View>
       </View>
     );
   }
@@ -131,8 +137,13 @@ class DepartmentList extends Component {
 
 const styles = {
   flatListContainer: {
+    flex: 8.7,
     marginTop: '-7.5%',
     paddingBottom: '1%',
+  },
+  bannerContainerStyle: {
+    flex: 1,
+    justifyContent: 'flex-end',
   },
   departmentContainer: {
     flex: 1,
