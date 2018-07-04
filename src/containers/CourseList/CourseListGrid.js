@@ -82,6 +82,7 @@ class CourseListGrid extends Component {
             data={this.props.courseData[this.props.index]}
             renderItem={this._renderItem}
             numColumns={numColumns}
+            keyExtractor={(item, index) => `${index}`}
           />
         </View>
       );

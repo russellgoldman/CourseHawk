@@ -126,6 +126,7 @@ class DepartmentList extends Component {
             style={{ marginTop: '7.5%' }}
             data={departmentArray}
             renderItem={this.renderDepartment}
+            keyExtractor={(item, index) => `${index}`}
           />
         </View>
         <View style={bannerContainerStyle}>
@@ -145,6 +146,7 @@ const styles = {
   bannerContainerStyle: {
     flex: 1,
     justifyContent: 'flex-end',
+    width: '100%',
   },
   departmentContainer: {
     flex: 1,
