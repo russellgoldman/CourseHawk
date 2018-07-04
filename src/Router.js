@@ -5,7 +5,14 @@ import CourseView from './containers/CourseView/CourseView';
 import SearchView from './containers/SearchView/SearchView';
 import UserPanel from './containers/UserPanel/UserPanel';
 import Filter from './containers/SearchView/Filter';
-import { search, user, close, filter, back } from '../assets/images';
+import {
+  search,
+  user,
+  close,
+  filter,
+  back,
+  home,
+} from '../assets/images';
 
 /* Notes:
   - <Scene></Scene> wraps are used to indicate breaks of flows (no back button)
@@ -23,7 +30,7 @@ const RouterComponent = () => {
             title="Courses by Department"
             navigationBarStyle={{ backgroundColor: '#fff' }}
             leftButtonImage={user}
-            leftButtonIconStyle={{ height: 22.5, width: 22.5, marginLeft: 5, marginRight: 5 }}
+            leftButtonIconStyle={{ height: 24.5, width: 24.5, marginLeft: 5, marginRight: 5 }}
             rightButtonImage={search}
             rightButtonIconStyle={{ height: 22.5, width: 22.5, marginLeft: 5, marginRight: 5 }}
             onLeft={ () => Actions.userPanel({ title: 'User Settings' }) }
@@ -32,7 +39,7 @@ const RouterComponent = () => {
           />
           <Scene key="userPanel"
             component={UserPanel}
-            leftButtonImage={close}
+            leftButtonImage={back}
             leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
             onLeft={ () => Actions.pop() }
           />
@@ -42,14 +49,17 @@ const RouterComponent = () => {
             title="Course Name"
             leftButtonImage={back}
             leftButtonIconStyle={{ height: 20, width: 20, marginLeft: 5, marginRight: 5 }}
+            rightButtonImage={home}
+            rightButtonIconStyle={{ height: 21.5, width: 21.5, marginLeft: 5, marginRight: 5 }}
             onLeft={ () => Actions.pop() }
+            onRight={ () => Actions.modal() }
             sceneStyle={{ backgroundColor: '#34026F' }}
           />
         </Scene>
         <Scene key="search" modal={true}>
           <Scene key="searchView"
             component={SearchView}
-            leftButtonImage={close}
+            leftButtonImage={back}
             leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
             rightButtonImage={filter}
             rightButtonIconStyle={{ height: 21, width: 21, marginLeft: 5, marginRight: 5 }}
@@ -59,8 +69,8 @@ const RouterComponent = () => {
           />
           <Scene key="filter"
             component={Filter}
-            leftButtonImage={back}
-            leftButtonIconStyle={{ height: 20, width: 20, marginLeft: 5, marginRight: 5 }}
+            leftButtonImage={close}
+            leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
             onLeft={ () => Actions.pop() }
           />
         </Scene>

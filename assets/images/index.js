@@ -5,6 +5,7 @@ import user from './user.png';
 import close from './close.png';
 import filter from './filter.png';
 import back from './back.png';
+import home from './home.png';
 
 export {
   expandArrow,
@@ -13,5 +14,6 @@ export {
   user,
   close,
   filter,
-  back
+  back,
+  home,
 };

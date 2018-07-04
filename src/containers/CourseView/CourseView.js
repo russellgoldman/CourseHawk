@@ -39,7 +39,7 @@ class CourseView extends Component {
 
     var prevWordWasLink = false;   // whether to add a '/' or not
     var separator = '';
-    var space = '';
+    var space = ' ';
     var isFirstWord = true;
 
     return words.map((word) => {
@@ -52,12 +52,7 @@ class CourseView extends Component {
           separator = ', ';
         }
 
-        if (!isFirstWord) {
-          space = ' ';
-        }
-
         prevWordWasLink = true;
-        isFirstWord = false;
 
         var courseCode = courseObj.course_code || '';
         var courseName = courseObj.course_name || '';
