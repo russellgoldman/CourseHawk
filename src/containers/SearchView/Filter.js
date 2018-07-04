@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { View, Text, SearchBar } from 'react-native';
 import BannerContainer from '../../common/BannerContainer';
 
-class SearchView extends Component {
+class SearchView extends PureComponent {
   render() {
     const { filterView, bannerContainerStyle } = styles;
 

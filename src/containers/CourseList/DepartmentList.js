@@ -1,4 +1,4 @@
-import React, { Component } from 'React';
+import React, { PureComponent } from 'React';
 import {
   View,
   Text,
@@ -15,7 +15,7 @@ import BannerContainer from '../../common/BannerContainer';
 
 var globalDepartment = '';
 const visible = false;
-class DepartmentList extends Component {
+class DepartmentList extends PureComponent {
   constructor(props) {
     super();
 
@@ -160,7 +160,7 @@ const styles = {
   },
   departmentText: {
     flex: 1,
-    fontSize: 17.5,
+    fontSize: 17,
     fontWeight: 'bold',
     paddingTop: '4%',
     paddingBottom: '4%',

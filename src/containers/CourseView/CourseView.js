@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Text, View, ScrollView } from 'react-native';
 var jsonQuery = require('json-query');
 import { connect } from 'react-redux';
@@ -6,7 +6,7 @@ import { Actions } from 'react-native-router-flux';
 import BannerContainer from '../../common/BannerContainer';
 import { findCourseJSON, isCourse } from '../../utilities/JSONUtilities';
 
-class CourseView extends Component {
+class CourseView extends PureComponent {
   constructor(props) {
     super();
   }

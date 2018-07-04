@@ -1,4 +1,4 @@
-import React, { Component } from 'React';
+import React, { PureComponent } from 'React';
 import {
   View,
   Text,
@@ -13,7 +13,7 @@ import { Actions } from 'react-native-router-flux';
 import { selectDepartment } from '../../actions';
 
 const numColumns = 2;
-class CourseListGrid extends Component {
+class CourseListGrid extends PureComponent {
   constructor(props) {
     super();
   }

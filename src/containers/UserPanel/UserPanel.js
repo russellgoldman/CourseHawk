@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { View, Text } from 'react-native';
 import BannerContainer from '../../common/BannerContainer';
 
-class UserPanel extends Component {
+class UserPanel extends PureComponent {
   render() {
     const { userPanelView, bannerContainerStyle } = styles;
 
