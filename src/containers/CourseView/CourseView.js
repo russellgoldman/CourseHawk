@@ -67,6 +67,8 @@ class CourseView extends Component {
       if (linkKeys.includes(word) && Object.values(courseDataArr[linkKeyIndex])[0] !== null) {
         courseObj = Object.values(courseDataArr[linkKeyIndex])[0];
 
+        linkKeyIndex++;
+
         var courseCode = courseObj.course_code || '';
         var courseName = courseObj.course_name || '';
         var courseOffering = courseObj.course_offering || '';
