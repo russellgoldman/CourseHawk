@@ -24,7 +24,7 @@ class CourseListGrid extends Component {
 
   _renderItem(course) {
     const { courseCodeStyle, courseNameStyle, creditTextStyle } = styles;
-    const { item } = course;
+    const { item, index } = course;
     var {
       courseCode,
       courseName,
@@ -47,6 +47,7 @@ class CourseListGrid extends Component {
 
     return (
       <TouchableOpacity
+        key={index}
         onPress={() => {
           Actions.courseView({
             title: courseCode,
@@ -85,6 +86,7 @@ class CourseListGrid extends Component {
         </View>
       );
     }
+
     return (null);
   }
 };

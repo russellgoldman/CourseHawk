@@ -91,6 +91,7 @@ class DepartmentList extends Component {
 
     return (
       <TouchableOpacity
+        key={index}
         onPress={() => {
           props.selectDepartment(department);
 
@@ -103,7 +104,7 @@ class DepartmentList extends Component {
           forceUpdate();
         }}
       >
-        <View key={Math.random() * Math.random()}>
+        <View>
           <View style={departmentContainer}>
             <Text style={departmentText}>{department}</Text>
             {_renderArrow(department)}

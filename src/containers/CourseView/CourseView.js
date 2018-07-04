@@ -213,7 +213,7 @@ class CourseView extends Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <ScrollView style={informationContainer}>
+        <ScrollView style={informationContainer} key={Math.random() * Math.random()}>
           <View style={{ marginTop: '2.5%' }}></View>
           {this._renderKeyValue('Course Name', courseName)}
           {this._renderKeyValue('Course Offering', courseOffering)}
