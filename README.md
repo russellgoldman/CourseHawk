@@ -9,7 +9,7 @@ Front-End: https://github.com/russellgoldman/CourseHawk
 Back-End: https://github.com/russellgoldman/CourseHawkAPI
 
 ## Hidden Data
-I have purposely removed the CourseData JSON object to protect against code plagiarism. If you would like to view it, please fill out the contact form at the bottom of my website and request them in the Message box. Incomplete contact forms will be discarded. Thanks!
+I have purposely removed the CourseData JSON object to protect against code plagiarism. If you would like to view it, please fill out the contact form at the bottom of my website and request it in the Message box. Incomplete contact forms will be discarded. Thanks!
 
 https://russellgoldman.me
 
