@@ -44,25 +44,28 @@ class CourseView extends Component {
 
     return words.map((word) => {
       if (prevWordWasCourse) {
-        separator = ', ';
+        separator = ',';
       } else {
         separator = '';
       }
 
       if (isCourse(word)) {
         prevWordWasCourse = true;
+        space = ' ';
       } else {
         prevWordWasCourse = false;
       }
 
+      if (!isFirstWord) {
+        space = ' ';
+      } else {
+        space = '';
+      }
+
+      isFirstWord = false;
+
       if (linkKeys.includes(word) && Object.values(courseDataArr[linkKeyIndex])[0] !== null) {
         courseObj = Object.values(courseDataArr[linkKeyIndex])[0];
-
-        if (!isFirstWord) {
-          space = ' ';
-        }
-
-        isFirstWord = false;
 
         var courseCode = courseObj.course_code || '';
         var courseName = courseObj.course_name || '';
