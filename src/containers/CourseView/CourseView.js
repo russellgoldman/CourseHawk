@@ -4,8 +4,8 @@ var jsonQuery = require('json-query');
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import BannerContainer from '../../common/BannerContainer';
+import { findCourseJSON, isCourse } from '../../utilities/JSONUtilities';
 
-const letters = /^[A-Z]+$/;
 class CourseView extends Component {
   constructor(props) {
     super();
@@ -29,7 +29,7 @@ class CourseView extends Component {
   }
 
   _renderValueWithLinks(courseDataArr, value) {
-    linkKeys = [];
+    var linkKeys = [];
     courseDataArr.forEach((courseData) => {
       linkKeys.push(Object.keys(courseData)[0]);
     });
@@ -37,10 +37,10 @@ class CourseView extends Component {
     linkKeyIndex = 0;
     words = value.split(/[\s, ]+/);
 
-    prevWordWasLink = false;   // whether to add a '/' or not
-    separator = '';
-    space = '';
-    isFirstWord = true;
+    var prevWordWasLink = false;   // whether to add a '/' or not
+    var separator = '';
+    var space = '';
+    var isFirstWord = true;
 
     return words.map((word) => {
       if (linkKeys.includes(word) && Object.values(courseDataArr[linkKeyIndex])[0] !== null) {
@@ -128,9 +128,9 @@ class CourseView extends Component {
     courseDataArr = [];   // [{ courseCode: courseDataObj }, etc...]
     words = value.split(/[\s, ]+/);   // split the words in value by all non letters and digits
     words.forEach((word) => {
-      isCourse = this._isCourse(word);
-      if (isCourse) {
-        arr = this._findCourseJSON(word);
+      var isCourseAnswer = isCourse(word);
+      if (isCourseAnswer) {
+        arr = findCourseJSON(word, this.props.courseData);
         if (!Array.isArray(arr) || !arr.length == 0) {
           courseDataArr.push({ [arr[0].course_code]: arr[0] });
         }
@@ -138,64 +138,6 @@ class CourseView extends Component {
     });
 
     return courseDataArr;
-  }
-
-  _findCourseJSON(courseCode) {
-    // we must remove the * when searching in the JSON because course codes don't have this in storage
-    courseCode = courseCode.replace('*', '');
-    arr = [];
-
-    // performing a deep query to find the JSON object associated with the course code
-    // TODO FIX FOR LOOP TO BREAK WHEN QUERY IS FOUND AND PROPERLY RETURN THE OBJECT
-    Object.keys(this.props.courseData).some((department) => {
-      arr = jsonQuery(`${department}[**][*course_code=${courseCode}]`, { data: this.props.courseData }).value;
-      if (!Array.isArray(arr) || !arr.length == 0) {
-        return true;  // .some() breaks under return true
-      }
-    });
-    return arr;
-  }
-
-  _isCourse(word) {
-    // default to true, if we suspect otherwise then set to false
-    isCourse = true;
-    digitOrLetters = [];
-
-    // must be 5 characters or greater
-    if (word.length > 4) {
-      // must have all capital alphabetical characters followed by all digits
-      for (i = 0; i < word.length; i++) {
-        if (word[i].match(letters) == word[i]) {
-          // check to see if the character is a letter
-          digitOrLetters.push('letter');
-          if (digitOrLetters[digitOrLetters.length - 1] === 'digit') {
-            // digits must proceed letters. if the previous character was a digit, this is not a valid course
-            isCourse = false;
-            return isCourse;
-          }
-        } else if (Number.isInteger(parseInt(word[i]))) {
-          // check to see if the character is a digit
-          digitOrLetters.push('digit');
-        } else if (word[i] === '/') {
-          digitOrLetters.push('');
-        } else {
-          isCourse = false;
-          return isCourse;
-        }
-      }
-    } else {
-      isCourse = false;
-      return isCourse;
-    }
-
-    if (word.match(letters) == word) {
-      // the word only contains letters, not a valid courses
-      isCourse = false;
-      return isCourse;
-    }
-
-    // if we get here, the course is true
-    return isCourse;
   }
 
   render() {
