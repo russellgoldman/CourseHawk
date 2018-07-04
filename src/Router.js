@@ -12,6 +12,7 @@ import {
   filter,
   back,
   home,
+  checkMark,
 } from '../assets/images';
 
 /* Notes:
@@ -32,7 +33,7 @@ const RouterComponent = () => {
             leftButtonImage={user}
             leftButtonIconStyle={{ height: 24.5, width: 24.5, marginLeft: 5, marginRight: 5 }}
             rightButtonImage={search}
-            rightButtonIconStyle={{ height: 22.5, width: 22.5, marginLeft: 5, marginRight: 5 }}
+            rightButtonIconStyle={{ height: 22.5, width: 22.5, marginLeft: 7, marginRight: 7 }}
             onLeft={ () => Actions.userPanel({ title: 'User Settings' }) }
             onRight={ () => Actions.search({ title: 'Search / Filter Courses' }) }
             initial
@@ -64,14 +65,20 @@ const RouterComponent = () => {
             rightButtonImage={filter}
             rightButtonIconStyle={{ height: 21, width: 21, marginLeft: 5, marginRight: 5 }}
             onLeft={ () => Actions.pop() }
-            onRight={ () => Actions.filter({ title: 'Filter Options' }) }
+            onRight={ () => Actions.filter({ title: 'Apply Filters' }) }
             initial
           />
           <Scene key="filter"
             component={Filter}
             leftButtonImage={close}
             leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
+            rightButtonImage={checkMark}
+            rightButtonIconStyle={{ height: 22, width: 22, marginLeft: 5, marginRight: 5 }}
             onLeft={ () => Actions.pop() }
+            onRight={ () => {
+              Actions.pop();
+            } }
+
           />
         </Scene>
       </Scene>

@@ -9,7 +9,7 @@ class SearchView extends Component {
     return (
       <View style={{ flex: 1 }}>
         <View style={filterView}>
-          <Text style={{ flex: 1 }}>Filter Options</Text>
+          <Text style={{ flex: 1 }}>Apply Filters</Text>
         </View>
         <View style={bannerContainerStyle}>
           <BannerContainer />

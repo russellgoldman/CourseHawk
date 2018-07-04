@@ -37,22 +37,32 @@ class CourseView extends Component {
     linkKeyIndex = 0;
     words = value.split(/[\s, ]+/);
 
-    var prevWordWasLink = false;   // whether to add a '/' or not
+    var prevWordWasCourse = false;   // whether to add a '/' or not
     var separator = '';
-    var space = ' ';
+    var space = '';
     var isFirstWord = true;
 
     return words.map((word) => {
+      if (prevWordWasCourse) {
+        separator = ', ';
+      } else {
+        separator = '';
+      }
+
+      if (isCourse(word)) {
+        prevWordWasCourse = true;
+      } else {
+        prevWordWasCourse = false;
+      }
+
       if (linkKeys.includes(word) && Object.values(courseDataArr[linkKeyIndex])[0] !== null) {
         courseObj = Object.values(courseDataArr[linkKeyIndex])[0];
 
-        linkKeyIndex++;
-
-        if (prevWordWasLink) {
-          separator = ', ';
+        if (!isFirstWord) {
+          space = ' ';
         }
 
-        prevWordWasLink = true;
+        isFirstWord = false;
 
         var courseCode = courseObj.course_code || '';
         var courseName = courseObj.course_name || '';
