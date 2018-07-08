@@ -1,33 +1,86 @@
 import React, { PureComponent } from 'react';
 import { View, Text } from 'react-native';
+import SearchList from './SearchList';
 import { SearchBar } from 'react-native-elements';
 import BannerContainer from '../../common/BannerContainer';
 import { connect } from 'react-redux';
 import { changeSearchText, clearSearchText } from '../../actions';
+var jsonQuery = require('json-query');
+
+// helpers for json-query
+var helpers = {
+  containsExactly: function (input, arg) {
+    // for findCoursesContaining
+    var tempInput = input || '';
+    //console.log(tempInput);
+    if (typeof (tempInput) != 'object') {
+      //console.log(typeof (tempInput));
+      if (tempInput.indexOf(arg) === 0) {
+        return true;
+      }
+    } else {
+      return false;
+    }
+  },
+};
 
 class SearchView extends PureComponent {
+  constructor(props) {
+    super();
+  }
+
+  findCoursesContaining(searchStr, courseData) {
+    var allResults = [];
+    var arr = [];
+
+    //var inputSection = element.split('').splice(0, arg.length).toString();
+    //console.log(`${searchStr} internal`);
+    Object.keys(courseData).forEach((department) => {
+      arr = jsonQuery(`${department}[**]
+        [*course_code:containsExactly(${searchStr})]`,
+        { data: courseData, locals: helpers }).value;
+      allResults.push(arr);
+    });
+
+    return allResults;
+  }
+
   render() {
     const { searchView, bannerContainerStyle } = styles;
-    console.log(this.props.searchData.searchText);
+    var searchResults = [];
+
+    if (this.props.searchData.searchText != '') {
+      // only run search when searchStr isn't blank
+      //console.log(`${this.props.searchData.searchText} external`);
+      var allResults = this.findCoursesContaining(this.props.searchData.searchText, this.props.courseData);
+
+      allResults = allResults.forEach((arr) => {
+        if (!Array.isArray(arr) || !arr.length == 0) {
+          arr.forEach((course) => {
+            if (!searchResults.includes(course)) {
+              searchResults.push(course);
+            }
+
+          });
+        }
+      });
+      allResults = [];
+    }
 
     return (
       <View style={{ flex: 1 }}>
         <View style={searchView}>
-          <View style={{ flex: 1 }}>
-            <SearchBar
-              round
-              lightTheme
-              placeholder='Enter Course Code'
-              containerStyle={{ backgroundColor: '#5b01c4' }}
-              inputStyle={{ backgroundColor: 'white', color: '#595959' }}
-              searchIcon={{ size: 24 }}
-              onChangeText={(text) => this.props.changeSearchText(text)}
-              onClear={() => this.props.clearSearchText()} />
-          </View>
-          <View style={{ flex: 2 }}>
-            <Text style={{ textAlign: 'center', fontSize: '22px', }}>
-              {this.props.searchData.searchText}
-            </Text>
+          <SearchBar
+            round
+            lightTheme
+            placeholder='Enter Course Code'
+            containerStyle={{ backgroundColor: '#5b01c4' }}
+            inputStyle={{ backgroundColor: 'white', color: '#595959' }}
+            searchIcon={{ size: 24 }}
+            onChangeText={(text) => this.props.changeSearchText(text)}
+            onClear={() => this.props.clearSearchText()} />
+          <View style={{ marginTop: -25, }}>
+            <SearchList filteredData={searchResults} />
           </View>
         </View>
         <View style={bannerContainerStyle}>
@@ -50,6 +103,7 @@ const styles = {
 
 const mapStateToProps = state => {
   return {
+    courseData: state.courseData,
     searchData: state.searchData,
   };
 };

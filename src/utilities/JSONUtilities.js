@@ -1,5 +1,9 @@
 var jsonQuery = require('json-query');
 
+// helpers for json-query
+const helpers = {
+};
+
 const letters = /^[A-Z]+$/;
 export const findCourseJSON = (courseCode, courseData) => {
   // we must remove the * when searching in the JSON because course codes don't have this in storage
