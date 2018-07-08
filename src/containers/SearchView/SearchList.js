@@ -19,8 +19,8 @@ class SearchList extends PureComponent {
       course_credit, lecture_hours, lab_hours,
       course_desc, req_dict
     } = item;
-    console.log(item);
-    console.log(index);
+    //console.log(item);
+    //console.log(index);
 
     // set default value in case of undefined
     var courseCode = course_code || '';
@@ -48,7 +48,6 @@ class SearchList extends PureComponent {
             labHours,
             courseDesc,
             reqDict,
-            onLeft: () => Actions.search(),
           });
         }}
       >

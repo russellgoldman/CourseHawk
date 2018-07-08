@@ -57,7 +57,15 @@ class SearchView extends PureComponent {
       allResults = allResults.forEach((arr) => {
         if (!Array.isArray(arr) || !arr.length == 0) {
           arr.forEach((course) => {
-            if (!searchResults.includes(course)) {
+            if (!Array.isArray(searchResults) || !searchResults.length == 0) {
+              searchResults.some((data) => {
+                if (JSON.stringify(data) !== JSON.stringify(course)) {
+                  console.log(JSON.stringify(data) === JSON.stringify(course));
+                  searchResults.push(course);
+                  return true;
+                }
+              });
+            } else {
               searchResults.push(course);
             }
           });
@@ -77,8 +85,7 @@ class SearchView extends PureComponent {
               containerStyle={{ backgroundColor: '#5b01c4' }}
               inputStyle={{ backgroundColor: 'white', color: '#595959' }}
               searchIcon={{ size: 24 }}
-              onChangeText={(text) => this.props.changeSearchText(text)}
-              onClear={() => this.props.clearSearchText()} />
+              onChangeText={(text) => this.props.changeSearchText(text)} />
           </View>
           <View>
             <SearchList filteredData={searchResults} />
