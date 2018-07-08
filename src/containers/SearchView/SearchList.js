@@ -23,20 +23,21 @@ class SearchList extends PureComponent {
     console.log(index);
 
     // set default value in case of undefined
-    courseCode = course_code || '';
-    courseName = course_name || '';
-    courseOffering = course_offering || '';
-    courseCredit = course_credit || '';
-    lectureHours = lecture_hours || '';
-    labHours = lab_hours || '';
-    courseDesc = course_desc || '';
-    reqDict = req_dict || '';
+    var courseCode = course_code || '';
+    var courseName = course_name || '';
+    var courseOffering = course_offering || '';
+    var courseCredit = course_credit || '';
+    var lectureHours = lecture_hours || '';
+    var labHours = lab_hours || '';
+    var courseDesc = course_desc || '';
+    var reqDict = req_dict || '';
 
     return (
       <TouchableOpacity
         key={index}
         onPress={() => {
           // show Course screen
+          console.log(courseCode);
           Actions.courseView({
             title: courseCode,
             courseCode,
@@ -47,7 +48,6 @@ class SearchList extends PureComponent {
             labHours,
             courseDesc,
             reqDict,
-            onLeft: () => Actions.search(),
           });
         }}
       >

@@ -35,6 +35,7 @@ class CourseListGrid extends PureComponent {
       courseDesc,
       reqDict,
     } = item;
+    console.log(item);
 
     var courseCode = courseCode || '';
     var courseName = courseName || '';

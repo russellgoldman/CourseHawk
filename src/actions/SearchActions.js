@@ -7,7 +7,7 @@ import {
 export const changeSearchText = (searchText) => {
   return {
     type: CHANGE_SEARCH_TEXT,
-    payload: searchText,
+    payload: searchText.toUpperCase(),
   };
 };
 

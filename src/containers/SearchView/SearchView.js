@@ -70,16 +70,18 @@ class SearchView extends PureComponent {
     return (
       <View style={{ flex: 1 }}>
         <View style={searchView}>
-          <SearchBar
-            round
-            lightTheme
-            placeholder='Enter Course Code'
-            containerStyle={{ backgroundColor: '#5b01c4' }}
-            inputStyle={{ backgroundColor: 'white', color: '#595959' }}
-            searchIcon={{ size: 24 }}
-            onChangeText={(text) => this.props.changeSearchText(text)}
-            onClear={() => this.props.clearSearchText()} />
-          <View style={{ marginTop: -25, }}>
+          <View>
+            <SearchBar
+              round
+              lightTheme
+              placeholder='Enter Course Code'
+              containerStyle={{ backgroundColor: '#5b01c4' }}
+              inputStyle={{ backgroundColor: 'white', color: '#595959' }}
+              searchIcon={{ size: 24 }}
+              onChangeText={(text) => this.props.changeSearchText(text)}
+              onClear={() => this.props.clearSearchText()} />
+          </View>
+          <View>
             <SearchList filteredData={searchResults} />
           </View>
         </View>
