@@ -34,12 +34,13 @@ const RouterComponent = () => {
             leftButtonIconStyle={{ height: 24.5, width: 24.5, marginLeft: 5, marginRight: 5 }}
             rightButtonImage={search}
             rightButtonIconStyle={{ height: 22.5, width: 22.5, marginLeft: 7, marginRight: 7 }}
-            onLeft={ () => Actions.userPanel({ title: 'User Settings' }) }
-            onRight={ () => Actions.search({ title: 'Search / Filter Courses' }) }
+            onLeft={ () => Actions.userPanel() }
+            onRight={ () => Actions.search() }
             initial
           />
           <Scene key="userPanel"
             component={UserPanel}
+            title="User Settings"
             leftButtonImage={back}
             leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
             onLeft={ () => Actions.pop() }
@@ -60,16 +61,18 @@ const RouterComponent = () => {
         <Scene key="search" modal={true}>
           <Scene key="searchView"
             component={SearchView}
+            title="Search / Filter Courses"
             leftButtonImage={back}
             leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
             rightButtonImage={filter}
             rightButtonIconStyle={{ height: 21, width: 21, marginLeft: 5, marginRight: 5 }}
             onLeft={ () => Actions.pop() }
-            onRight={ () => Actions.filter({ title: 'Apply Filters' }) }
+            onRight={ () => Actions.filter() }
             initial
           />
           <Scene key="filter"
             component={Filter}
+            title="Apply Filters"
             leftButtonImage={close}
             leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
             rightButtonImage={checkMark}

@@ -48,6 +48,7 @@ class SearchList extends PureComponent {
             labHours,
             courseDesc,
             reqDict,
+            onLeft: () => Actions.search(),
           });
         }}
       >
@@ -62,7 +63,7 @@ class SearchList extends PureComponent {
     return (
       <View>
         <FlatList
-          style={{ marginTop: '7.5%' }}
+          style={{ marginBottom: '3.75%' }}
           data={this.props.filteredData}
           renderItem={this.renderFilteredItems}
           keyExtractor={(item, index) => `${index}`}

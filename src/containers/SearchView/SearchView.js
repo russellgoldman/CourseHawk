@@ -60,7 +60,6 @@ class SearchView extends PureComponent {
             if (!searchResults.includes(course)) {
               searchResults.push(course);
             }
-
           });
         }
       });
