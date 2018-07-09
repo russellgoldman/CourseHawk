@@ -6,6 +6,7 @@ import BannerContainer from '../../common/BannerContainer';
 import { connect } from 'react-redux';
 import { changeSearchText, clearSearchText } from '../../actions';
 var jsonQuery = require('json-query');
+var _ = require('lodash');
 
 // helpers for json-query
 var helpers = {
@@ -51,26 +52,20 @@ class SearchView extends PureComponent {
 
     if (this.props.searchData.searchText != '') {
       // only run search when searchStr isn't blank
-      //console.log(`${this.props.searchData.searchText} external`);
       var allResults = this.findCoursesContaining(this.props.searchData.searchText, this.props.courseData);
 
       allResults = allResults.forEach((arr) => {
         if (!Array.isArray(arr) || !arr.length == 0) {
           arr.forEach((course) => {
             if (!Array.isArray(searchResults) || !searchResults.length == 0) {
-              searchResults.some((data) => {
-                if (JSON.stringify(data) !== JSON.stringify(course)) {
-                  console.log(JSON.stringify(data) === JSON.stringify(course));
-                  searchResults.push(course);
-                  return true;
-                }
-              });
+              searchResults.push(course);
             } else {
               searchResults.push(course);
             }
           });
         }
       });
+      searchResults = _.uniqWith(searchResults, _.isEqual);
       allResults = [];
     }
 
