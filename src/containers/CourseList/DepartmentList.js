@@ -8,6 +8,7 @@ import {
   LayoutAnimation,
 } from 'react-native';
 import { connect } from 'react-redux';
+import { OptimizedFlatList } from 'react-native-optimized-flatlist'
 import CourseListGrid from './CourseListGrid';
 import { collapseArrow, expandArrow } from '../../../assets/images';
 import { selectDepartment, spinnerVisible } from '../../actions';
@@ -123,6 +124,9 @@ class DepartmentList extends PureComponent {
       <View style={{ flex: 1 }}>
         <View style={flatListContainer}>
           <FlatList
+            removeClippedSubviews
+            disableVirtualization
+            initialNumToRender={10}
             style={{ marginTop: '7.5%' }}
             data={departmentArray}
             renderItem={this.renderDepartment}
@@ -162,8 +166,8 @@ const styles = {
     flex: 1,
     fontSize: 17,
     fontWeight: 'bold',
-    paddingTop: '4%',
-    paddingBottom: '4%',
+    paddingTop: '4.5%',
+    paddingBottom: '4.5%',
     color: '#fff',
     paddingLeft: '3%',
     flexWrap: 'wrap',

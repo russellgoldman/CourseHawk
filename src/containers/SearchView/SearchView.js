@@ -96,7 +96,7 @@ class SearchView extends PureComponent {
 
 const styles = {
   searchView: {
-    flex: 8.7,
+    flex: 5.8,
   },
   bannerContainerStyle: {
     flex: 1,

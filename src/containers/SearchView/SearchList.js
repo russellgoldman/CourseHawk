@@ -37,7 +37,6 @@ class SearchList extends PureComponent {
         key={index}
         onPress={() => {
           // show Course screen
-          console.log(courseCode);
           Actions.courseView({
             title: courseCode,
             courseCode,
@@ -62,6 +61,8 @@ class SearchList extends PureComponent {
     return (
       <View>
         <FlatList
+          removeClippedSubviews
+          disableVirtualization
           style={{ marginBottom: '3.75%' }}
           data={this.props.filteredData}
           renderItem={this.renderFilteredItems}
@@ -87,8 +88,8 @@ const styles = {
     flex: 1,
     fontSize: 17,
     fontWeight: 'bold',
-    paddingTop: '4%',
-    paddingBottom: '4%',
+    paddingTop: '4.5%',
+    paddingBottom: '5%',
     color: '#000',
     paddingLeft: '3%',
     flexWrap: 'wrap',
