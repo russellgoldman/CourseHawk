@@ -61,8 +61,9 @@ class SearchList extends PureComponent {
     return (
       <View>
         <FlatList
-          removeClippedSubviews
-          disableVirtualization
+          removeClippedSubviews={true}
+          updateCellsBatchingPeriod={100}
+          initialNumToRender={15}
           style={{ marginBottom: '3.75%' }}
           data={this.props.filteredData}
           renderItem={this.renderFilteredItems}
