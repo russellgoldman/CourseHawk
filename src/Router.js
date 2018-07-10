@@ -57,6 +57,18 @@ const RouterComponent = () => {
             onRight={ () => Actions.modal() }
             sceneStyle={{ backgroundColor: '#34026F' }}
           />
+          <Scene
+            key="courseView2"
+            component={CourseView}
+            title="Course Name"
+            leftButtonImage={back}
+            leftButtonIconStyle={{ height: 20, width: 20, marginLeft: 5, marginRight: 5 }}
+            rightButtonImage={home}
+            rightButtonIconStyle={{ height: 21.5, width: 21.5, marginLeft: 5, marginRight: 5 }}
+            onLeft={ () => Actions.search() }
+            onRight={ () => Actions.modal() }
+            sceneStyle={{ backgroundColor: '#34026F' }}
+          />
         </Scene>
         <Scene key="search" modal={true}>
           <Scene key="searchView"
@@ -66,7 +78,7 @@ const RouterComponent = () => {
             leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
             rightButtonImage={filter}
             rightButtonIconStyle={{ height: 21, width: 21, marginLeft: 5, marginRight: 5 }}
-            onLeft={ () => Actions.pop() }
+            onLeft={ () => Actions.modal() }
             onRight={ () => Actions.filter() }
             initial
           />

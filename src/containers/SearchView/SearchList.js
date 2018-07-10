@@ -37,7 +37,7 @@ class SearchList extends PureComponent {
         key={index}
         onPress={() => {
           // show Course screen
-          Actions.courseView({
+          Actions.courseView2({
             title: courseCode,
             courseCode,
             courseName,
@@ -52,6 +52,7 @@ class SearchList extends PureComponent {
       >
         <View style={styles.filterContainer}>
           <Text style={styles.filterText}>{item.course_code}</Text>
+          <Text style={{ flex: 2, marginRight: '5%' }}>{item.course_name}</Text>
         </View>
       </TouchableOpacity>
     );
@@ -81,19 +82,19 @@ const styles = {
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: 'white',
-    marginBottom: '0%',
+    paddingTop: '1.5%',
+    paddingBottom: '7%',
     borderBottomWidth: 3,
-    borderBottomColor: '#cecdcc',
+    borderBottomColor: '#5b01c4',
   },
   filterText: {
-    flex: 1,
+    flex: 1.2,
     fontSize: 17,
     fontWeight: 'bold',
-    paddingTop: '4.5%',
-    paddingBottom: '5%',
     color: '#000',
     paddingLeft: '3%',
     flexWrap: 'wrap',
+    alignItems: 'center'
   },
 };
 

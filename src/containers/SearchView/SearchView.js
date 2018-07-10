@@ -4,7 +4,7 @@ import SearchList from './SearchList';
 import { SearchBar } from 'react-native-elements';
 import BannerContainer from '../../common/BannerContainer';
 import { connect } from 'react-redux';
-import { changeSearchText, clearSearchText } from '../../actions';
+import { changeSearchText, clearSearchText, updateResults } from '../../actions';
 var jsonQuery = require('json-query');
 var _ = require('lodash');
 
@@ -46,13 +46,31 @@ class SearchView extends PureComponent {
     return allResults;
   }
 
-  render() {
-    const { searchView, bannerContainerStyle } = styles;
-    var searchResults = [];
+  renderResults(searchResults) {
+    if (Array.isArray(searchResults) && searchResults.length == 0 && this.props.searchData.searchText !== '') {
+      // array is empty and an array
+      return (
+        <View style={{ paddingTop: 50, marginLeft: '5%', marginRight: '5%', }}>
+          <Text style={{ textAlign: 'center', fontSize: 18, lineHeight: 30 }}>No courses could be found. Try changing your search and / or advanced filter preferences.</Text>
+        </View>
+      );
+    } else if (this.props.searchData.searchText == '') {
+      return (
+        <View style={{ paddingTop: 50, marginLeft: '5%', marginRight: '5%', }}>
+          <Text style={{ textAlign: 'center', fontSize: 18, lineHeight: 30 }}>
+            To get started, enter a course code and / or access the advanced filters menu in the toolbar.
+          </Text>
+        </View>
+      );
+    }
 
-    if (this.props.searchData.searchText != '') {
+    return <SearchList filteredData={searchResults} />;
+  }
+
+  courseQuery(searchResults, searchText) {
+    if (searchText != '') {
       // only run search when searchStr isn't blank
-      var allResults = this.findCoursesContaining(this.props.searchData.searchText, this.props.courseData);
+      var allResults = this.findCoursesContaining(searchText, this.props.courseData);
 
       allResults = allResults.forEach((arr) => {
         if (!Array.isArray(arr) || !arr.length == 0) {
@@ -68,6 +86,15 @@ class SearchView extends PureComponent {
       searchResults = _.uniqWith(searchResults, _.isEqual);
       allResults = [];
     }
+  }
+
+  render() {
+    const { searchView, bannerContainerStyle } = styles;
+    var placeholder = 'Enter Course Code';
+
+    if (this.props.searchData.searchText !== '') {
+      placeholder = this.props.searchData.searchText;
+    }
 
     return (
       <View style={{ flex: 1 }}>
@@ -76,14 +103,21 @@ class SearchView extends PureComponent {
             <SearchBar
               round
               lightTheme
-              placeholder='Enter Course Code'
+              placeholder={`${placeholder}`}
               containerStyle={{ backgroundColor: '#5b01c4' }}
               inputStyle={{ backgroundColor: 'white', color: '#595959' }}
               searchIcon={{ size: 24 }}
-              onChangeText={(text) => this.props.changeSearchText(text)} />
+              onChangeText={(text) => {
+                // calculates the nextResults to be rendered
+                var nextResults = [];
+                this.courseQuery(nextResults, text.toUpperCase());
+                this.props.updateResults(nextResults);
+                this.props.changeSearchText(text);
+              }
+            } />
           </View>
           <View>
-            <SearchList filteredData={searchResults} />
+            {this.renderResults(this.props.searchData.results)}
           </View>
         </View>
         <View style={bannerContainerStyle}>
@@ -96,7 +130,7 @@ class SearchView extends PureComponent {
 
 const styles = {
   searchView: {
-    flex: 5.8,
+    flex: 8.7,
   },
   bannerContainerStyle: {
     flex: 1,
@@ -111,4 +145,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { changeSearchText, clearSearchText })(SearchView);
+export default connect(mapStateToProps, {
+  changeSearchText,
+  clearSearchText,
+  updateResults,
+})(SearchView);
