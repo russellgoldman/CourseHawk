@@ -68,7 +68,7 @@ class SearchView extends PureComponent {
   }
 
   courseQuery(searchResults, searchText) {
-    if (searchText != '') {
+    if (searchText !== '') {
       // only run search when searchStr isn't blank
       var allResults = this.findCoursesContaining(searchText, this.props.courseData);
 
@@ -86,6 +86,8 @@ class SearchView extends PureComponent {
       searchResults = _.uniqWith(searchResults, _.isEqual);
       allResults = [];
     }
+    
+    return searchResults;
   }
 
   render() {
@@ -110,7 +112,7 @@ class SearchView extends PureComponent {
               onChangeText={(text) => {
                 // calculates the nextResults to be rendered
                 var nextResults = [];
-                this.courseQuery(nextResults, text.toUpperCase());
+                nextResults = this.courseQuery(nextResults, text.toUpperCase());
                 this.props.updateResults(nextResults);
                 this.props.changeSearchText(text);
               }
