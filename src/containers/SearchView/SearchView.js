@@ -86,7 +86,7 @@ class SearchView extends PureComponent {
       searchResults = _.uniqWith(searchResults, _.isEqual);
       allResults = [];
     }
-    
+
     return searchResults;
   }
 
