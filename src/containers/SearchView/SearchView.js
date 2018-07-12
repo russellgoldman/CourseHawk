@@ -13,13 +13,12 @@ var helpers = {
   containsExactly: function (input, arg) {
     // for findCoursesContaining
     var tempInput = input || '';
-    //console.log(tempInput);
     if (typeof (tempInput) != 'object') {
-      //console.log(typeof (tempInput));
       if (tempInput.indexOf(arg) === 0) {
         return true;
       }
     } else {
+      // error handling
       return false;
     }
   },
@@ -34,8 +33,6 @@ class SearchView extends PureComponent {
     var allResults = [];
     var arr = [];
 
-    //var inputSection = element.split('').splice(0, arg.length).toString();
-    //console.log(`${searchStr} internal`);
     Object.keys(courseData).forEach((department) => {
       arr = jsonQuery(`${department}[**]
         [*course_code:containsExactly(${searchStr})]`,
