@@ -76,10 +76,7 @@ const RouterComponent = () => {
             title="Search / Filter Courses"
             leftButtonImage={back}
             leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
-            rightButtonImage={filter}
-            rightButtonIconStyle={{ height: 21, width: 21, marginLeft: 5, marginRight: 5 }}
             onLeft={ () => Actions.modal() }
-            onRight={ () => Actions.filter() }
             initial
           />
           <Scene key="filter"
