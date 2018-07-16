@@ -1,9 +1,11 @@
 import React from 'react';
+import { Text } from 'react-native';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import DepartmentList from './containers/CourseList/DepartmentList';
 import CourseView from './containers/CourseView/CourseView';
 import SearchView from './containers/SearchView/SearchView';
-import UserPanel from './containers/UserPanel/UserPanel';
+import UserMain from './containers/UserPanel/UserMain';
+import UserLogin from './containers/UserPanel/UserLogin';
 import Filter from './containers/SearchView/Filter';
 import {
   search,
@@ -14,6 +16,12 @@ import {
   home,
   checkMark,
 } from '../assets/images';
+
+const TabIcon = ({ selected, title }) => {
+  return (
+    <Text style={{ color: selected ? 'purple' : 'black' }}>{title}</Text>
+  );
+};
 
 /* Notes:
   - <Scene></Scene> wraps are used to indicate breaks of flows (no back button)
@@ -34,12 +42,13 @@ const RouterComponent = () => {
             leftButtonIconStyle={{ height: 24.5, width: 24.5, marginLeft: 5, marginRight: 5 }}
             rightButtonImage={search}
             rightButtonIconStyle={{ height: 22.5, width: 22.5, marginLeft: 7, marginRight: 7 }}
-            onLeft={ () => Actions.userPanel() }
+            onLeft={ () => Actions.userMain() }
             onRight={ () => Actions.search() }
             initial
           />
-          <Scene key="userPanel"
-            component={UserPanel}
+          <Scene key="userMain"
+            tabs={true}
+            component={UserMain}
             title="User Settings"
             leftButtonImage={back}
             leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
@@ -73,7 +82,7 @@ const RouterComponent = () => {
         <Scene key="search" modal={true}>
           <Scene key="searchView"
             component={SearchView}
-            title="Search / Filter Courses"
+            title="Search Courses"
             leftButtonImage={back}
             leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
             onLeft={ () => Actions.modal() }
@@ -90,8 +99,32 @@ const RouterComponent = () => {
             onRight={ () => {
               Actions.pop();
             } }
-
           />
+        </Scene>
+        <Scene key="userLoginRegister"
+          onLeft={ () => Actions.pop() }
+          hideNavBar={true}
+          leftButtonImage={back}
+          leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
+        >
+          <Scene key="userLoginRegisterTabs"
+            tabs
+            tabBarStyle={{ backgroundColor: '#FFF' }}
+            initial
+          >
+            <Scene key="userLoginTab" title="Login" icon={TabIcon} initial>
+              <Scene key="userLogin"
+                component={UserLogin}
+                title="Login"
+              />
+            </Scene>
+            <Scene key="userRegisterTab" title="Register" icon={TabIcon}>
+              <Scene key="userLogin"
+                component={UserLogin}
+                title="Register"
+              />
+            </Scene>
+          </Scene>
         </Scene>
       </Scene>
     </Router>

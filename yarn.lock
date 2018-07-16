@@ -5714,6 +5714,10 @@ react-native-svg@6.2.2:
     lodash "^4.16.6"
     pegjs "^0.10.0"
 
+react-native-tab-bar@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/react-native-tab-bar/-/react-native-tab-bar-1.2.2.tgz#15e1acf1fddd1e786e1da95ccf0ae170d9bd9f93"
+
 "react-native-tab-view@github:react-navigation/react-native-tab-view":
   version "0.0.74"
   resolved "https://codeload.github.com/react-navigation/react-native-tab-view/tar.gz/36ebd834d78b841fc19778c966465d02fd1213bb"
