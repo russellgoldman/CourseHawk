@@ -70,7 +70,7 @@ const styles = {
     alignItems: 'center',
     maxHeight: '11.5%',
     backgroundColor: '#fff',
-    borderRadius: 10,
+    borderRadius: 5,
     marginTop: 8,
     marginBottom: 8,
     marginLeft: 11,
@@ -105,7 +105,7 @@ const styles = {
     padding: 7.5,
   },
   buttonStyle: {
-    marginTop: '10%',
+    marginTop: '7.5%',
     flexDirection: 'row',
     backgroundColor: '#fff',
     height: '12.5%',
