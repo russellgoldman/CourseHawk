@@ -6,6 +6,7 @@ import CourseView from './containers/CourseView/CourseView';
 import SearchView from './containers/SearchView/SearchView';
 import UserMain from './containers/UserPanel/UserMain';
 import UserLogin from './containers/UserPanel/UserLogin';
+import UserRegister from './containers/UserPanel/UserRegister';
 import Filter from './containers/SearchView/Filter';
 import {
   search,
@@ -125,7 +126,7 @@ const RouterComponent = () => {
               leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
             >
               <Scene key="userRegister"
-                component={UserLogin}
+                component={UserRegister}
               />
             </Scene>
           </Scene>
