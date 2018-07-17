@@ -100,23 +100,30 @@ const RouterComponent = () => {
             title="User Settings"
             leftButtonImage={back}
             leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
-            onLeft={ () => Actions.pop() }
+            onLeft={ () => Actions.modal() }
             initial
           />
           <Scene key="userLoginRegister"
-            onLeft={ () => Actions.pop() }
             hideNavBar
-            leftButtonImage={back}
-            leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
             tabs={true}
             labelStyle={{ fontSize: 18, marginBottom: 7.5 }}
           >
-            <Scene key="Login" title="Login" initial>
+            <Scene key="Login"
+              title="Login"
+              onLeft={ () => Actions.userMain() }
+              leftButtonImage={back}
+              leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
+              initial>
               <Scene key="userLogin"
                 component={UserLogin}
               />
             </Scene>
-            <Scene key="Register" title="Register" >
+            <Scene key="Register"
+              title="Register"
+              onLeft={ () => Actions.userMain() }
+              leftButtonImage={back}
+              leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
+            >
               <Scene key="userRegister"
                 component={UserLogin}
               />
