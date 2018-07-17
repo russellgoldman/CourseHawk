@@ -106,7 +106,7 @@ const RouterComponent = () => {
           <Scene key="userLoginRegister"
             hideNavBar
             tabs={true}
-            labelStyle={{ fontSize: 18, marginBottom: 7.5 }}
+            labelStyle={{ fontSize: 18, marginBottom: 9.5 }}
           >
             <Scene key="Login"
               title="Login"
