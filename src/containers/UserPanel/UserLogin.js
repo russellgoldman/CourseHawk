@@ -12,6 +12,7 @@ class UserPanel extends PureComponent {
           <Text style={{ flex: 1 }}>User Settings</Text>
         </View>
         <View style={bannerContainerStyle}>
+          <BannerContainer />
         </View>
       </View>
     );

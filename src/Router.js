@@ -42,17 +42,9 @@ const RouterComponent = () => {
             leftButtonIconStyle={{ height: 24.5, width: 24.5, marginLeft: 5, marginRight: 5 }}
             rightButtonImage={search}
             rightButtonIconStyle={{ height: 22.5, width: 22.5, marginLeft: 7, marginRight: 7 }}
-            onLeft={ () => Actions.userMain() }
+            onLeft={ () => Actions.userPanel() }
             onRight={ () => Actions.search() }
             initial
-          />
-          <Scene key="userMain"
-            tabs={true}
-            component={UserMain}
-            title="User Settings"
-            leftButtonImage={back}
-            leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
-            onLeft={ () => Actions.pop() }
           />
           <Scene
             key="courseView"
@@ -101,27 +93,32 @@ const RouterComponent = () => {
             } }
           />
         </Scene>
-        <Scene key="userLoginRegister"
-          onLeft={ () => Actions.pop() }
-          hideNavBar={true}
-          leftButtonImage={back}
-          leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
-        >
-          <Scene key="userLoginRegisterTabs"
-            tabs
-            tabBarStyle={{ backgroundColor: '#FFF' }}
+        <Scene key="userPanel" modal={true}>
+          <Scene key="userMain"
+            tabs={true}
+            component={UserMain}
+            title="User Settings"
+            leftButtonImage={back}
+            leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
+            onLeft={ () => Actions.pop() }
             initial
+          />
+          <Scene key="userLoginRegister"
+            onLeft={ () => Actions.pop() }
+            hideNavBar
+            leftButtonImage={back}
+            leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
+            tabs={true}
+            labelStyle={{ fontSize: 18, marginBottom: 7.5 }}
           >
-            <Scene key="userLoginTab" title="Login" icon={TabIcon} initial>
+            <Scene key="Login" title="Login" initial>
               <Scene key="userLogin"
                 component={UserLogin}
-                title="Login"
               />
             </Scene>
-            <Scene key="userRegisterTab" title="Register" icon={TabIcon}>
-              <Scene key="userLogin"
+            <Scene key="Register" title="Register" >
+              <Scene key="userRegister"
                 component={UserLogin}
-                title="Register"
               />
             </Scene>
           </Scene>
