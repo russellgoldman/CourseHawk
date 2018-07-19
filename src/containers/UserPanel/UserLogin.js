@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import BannerContainer from '../../common/BannerContainer';
 
 class UserLogin extends PureComponent {
@@ -27,7 +27,7 @@ class UserLogin extends PureComponent {
     return (
       <View style={{ flex: 1, backgroundColor: '#5b01c4', }}>
         <View style={outerContainer}>
-          <View style={{ marginTop: '7.5%' }}/>
+          <View style={{ marginTop: '3.5%' }}/>
           <View style={row}>
             <View style={{ flex: 0.5 }}/>
             <Text style={labelStyle}>School email:</Text>
@@ -45,10 +45,9 @@ class UserLogin extends PureComponent {
             <View style={{ flex: 0.75 }}/>
           </View>
           <View style={{ flex: 1 }}>
-            <View style={buttonStyle}>
-              <Button onPress={() => this.click()} title="Login"
-                color="#000" accessibilityLabel="Login" />
-            </View>
+            <TouchableOpacity style={buttonStyle}>
+              <Text style={{ fontSize: 18 }}>Login</Text>
+            </TouchableOpacity>
           </View>
         </View>
         <View style={bannerContainerStyle}>
@@ -71,8 +70,7 @@ const styles = {
     maxHeight: '11.5%',
     backgroundColor: '#fff',
     borderRadius: 5,
-    marginTop: 8,
-    marginBottom: 8,
+    marginTop: '3%',
     marginLeft: 11,
     marginRight: 11,
   },
@@ -105,7 +103,7 @@ const styles = {
     padding: 7.5,
   },
   buttonStyle: {
-    marginTop: '7.5%',
+    marginTop: '5%',
     flexDirection: 'row',
     backgroundColor: '#fff',
     height: '12.5%',
