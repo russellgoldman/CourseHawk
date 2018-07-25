@@ -2,18 +2,20 @@ import React, { PureComponent } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import BannerContainer from '../../common/BannerContainer';
 import { Spinner } from '../../common/Spinner';
+import { connect } from 'react-redux';
+import {
+  registerEmailChange,
+  registerPasswordChange,
+  registerSpinnerStart,
+  registerSpinnerOK,
+  registerSpinnerReject,
+} from '../../actions';
 import { Actions } from 'react-native-router-flux';
 
 class UserRegister extends PureComponent {
-  state = {
-    email: '',
-    password: '',
-    error: '',
-    loading: false,
-  };
 
   async register() {
-    this.setState({ loading: true });
+    this.props.registerSpinnerStart();
 
     fetch('https://coursehawk.herokuapp.com/users/registerCode', {
       method: 'POST',
@@ -22,8 +24,8 @@ class UserRegister extends PureComponent {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: this.state.email + '@mylaurier.ca',
-        password: this.state.password,
+        email: this.props.userData.registerEmail + '@mylaurier.ca',
+        password: this.props.userData.registerPassword,
       }),
     })
     .then((response) => response.json())
@@ -31,12 +33,10 @@ class UserRegister extends PureComponent {
       const { hashedToken } = responseJson;
       console.log(responseJson);
       console.log('it worked');
-      console.log(this.state.email + '@mylaurier.ca');
 
       var that = this;
       setTimeout(function () {
-        that.setState(
-        {
+        that.props.registerSpinnerOK({
           email: '',
           password: '',
           error: '',
@@ -49,13 +49,13 @@ class UserRegister extends PureComponent {
     .catch((e) => {
       var that = this;
       setTimeout(function () {
-        that.setState({ loading: false, error: 'Authentication Failed.', });
+        that.props.registerSpinnerReject({ loading: false, error: 'Authentication Failed.', });
       }, 1000);
     });
   }
 
   renderButton() {
-    if (this.state.loading) {
+    if (this.props.userData.registerLoading) {
       return (
         <View style={styles.buttonStyle}>
           <Spinner size='small' />;
@@ -72,8 +72,8 @@ class UserRegister extends PureComponent {
   }
 
   renderError() {
-    if (this.state.error !== '') {
-      return <Text style={styles.errorTextStyle}>{this.state.error}</Text>;
+    if (this.props.userData.registerError !== '') {
+      return <Text style={styles.errorTextStyle}>{this.props.userData.registerError}</Text>;
     } else {
       return (null);
     }
@@ -98,16 +98,16 @@ class UserRegister extends PureComponent {
             <View style={{ flex: 0.5 }}/>
             <Text style={labelStyle}>School email:</Text>
             <TextInput style={emailInputStyle} autoCapitalize="none" editable maxLength={40}
-              onChangeText={(email) => this.setState({ email })}
-              value={this.state.email} />
+              onChangeText={(email) => this.props.registerEmailChange(email) }
+              value={this.props.userData.registerEmail} />
             <Text style={supplementaryLabel}> @mylaurier.ca</Text>
           </View>
           <View style={row}>
             <View style={{ flex: 0.5 }}/>
             <Text style={labelStyle}>Password:</Text>
             <TextInput style={passwordInputStyle} autoCapitalize="none" editable maxLength={40}
-              onChangeText={(password) => this.setState({ password })}
-              value={this.state.password} secureTextEntry />
+              onChangeText={(password) => this.props.registerPasswordChange(password) }
+              value={this.props.userData.registerPassword} secureTextEntry />
             <View style={{ flex: 0.75 }}/>
           </View>
           <View style={{ flex: 1, marginTop: '7%' }}>
@@ -189,4 +189,17 @@ const styles = {
   },
 };
 
-export default UserRegister;
+const mapStateToProps = state => {
+  return {
+    userData: state.userData,
+  };
+};
+
+export default connect(mapStateToProps,
+{
+  registerEmailChange,
+  registerPasswordChange,
+  registerSpinnerStart,
+  registerSpinnerOK,
+  registerSpinnerReject,
+})(UserRegister);

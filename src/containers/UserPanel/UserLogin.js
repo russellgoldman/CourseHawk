@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import BannerContainer from '../../common/BannerContainer';
+import { connect } from 'react-redux';
 
 class UserLogin extends PureComponent {
   state = {
