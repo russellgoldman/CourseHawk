@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import BannerContainer from '../../common/BannerContainer';
 import { Spinner } from '../../common/Spinner';
+import { connect } from 'react-redux';
+import { login, logout } from '../../actions';
 import { Actions } from 'react-native-router-flux';
 
 class UserRegisterCode extends PureComponent {
@@ -31,8 +33,6 @@ class UserRegisterCode extends PureComponent {
       setTimeout(function () {
         that.setState(
         {
-          email: '',
-          password: '',
           error: '',
           loading: false,
         });
@@ -40,6 +40,7 @@ class UserRegisterCode extends PureComponent {
 
       // save responseJson.email to Redux along
       // also change loggedIn flag on UserReducer to true
+      //this.props.login();
 
       Actions.userPanel();
     })
