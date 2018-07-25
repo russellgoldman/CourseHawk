@@ -7,6 +7,7 @@ import SearchView from './containers/SearchView/SearchView';
 import UserMain from './containers/UserPanel/UserMain';
 import UserLogin from './containers/UserPanel/UserLogin';
 import UserRegister from './containers/UserPanel/UserRegister';
+import UserRegisterCode from './containers/UserPanel/UserRegisterCode';
 import Filter from './containers/SearchView/Filter';
 import {
   search,
@@ -129,6 +130,16 @@ const RouterComponent = () => {
                 component={UserRegister}
               />
             </Scene>
+          </Scene>
+          <Scene key="registerCodeContainer" hideNavBar>
+            <Scene key="registerCode" hideNavBar={false}
+              title="Confirm Registration"
+              component={UserRegisterCode}
+              onLeft={ () => Actions.pop() }
+              leftButtonImage={back}
+              leftButtonIconStyle={{ height: 18, width: 18, marginLeft: 5, marginRight: 5 }}
+              initial
+            />
           </Scene>
         </Scene>
       </Scene>

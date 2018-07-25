@@ -4,10 +4,9 @@ import BannerContainer from '../../common/BannerContainer';
 import { Spinner } from '../../common/Spinner';
 import { Actions } from 'react-native-router-flux';
 
-class UserRegister extends PureComponent {
+class UserRegisterCode extends PureComponent {
   state = {
-    email: '',
-    password: '',
+    token: '',
     error: '',
     loading: false,
   };
@@ -15,24 +14,19 @@ class UserRegister extends PureComponent {
   async register() {
     this.setState({ loading: true });
 
-    fetch('https://coursehawk.herokuapp.com/users/registerCode', {
+    fetch('https://coursehawk.herokuapp.com/users/register', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: this.state.email + '@mylaurier.ca',
-        password: this.state.password,
+        hashedToken: this.props.hashedToken,
+        userToken: this.state.token,
       }),
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      const { hashedToken } = responseJson;
-      console.log(responseJson);
-      console.log('it worked');
-      console.log(this.state.email + '@mylaurier.ca');
-
       var that = this;
       setTimeout(function () {
         that.setState(
@@ -44,7 +38,10 @@ class UserRegister extends PureComponent {
         });
       }, 1000);
 
-      Actions.registerCodeContainer({ hashedToken });
+      // save responseJson.email to Redux along
+      // also change loggedIn flag on UserReducer to true
+
+      Actions.userPanel();
     })
     .catch((e) => {
       var that = this;
@@ -66,7 +63,7 @@ class UserRegister extends PureComponent {
     // else, do what is below (as the default)
     return (
       <TouchableOpacity style={styles.buttonStyle} onPress={() => this.register()}>
-        <Text style={{ fontSize: 18 }}>Register</Text>
+        <Text style={{ fontSize: 18 }}>Confirm Registration</Text>
       </TouchableOpacity>
     );
   }
@@ -85,8 +82,7 @@ class UserRegister extends PureComponent {
       row,
       labelStyle,
       supplementaryLabel,
-      emailInputStyle,
-      passwordInputStyle,
+      tokenInputStyle,
       bannerContainerStyle,
     } = styles;
 
@@ -96,18 +92,10 @@ class UserRegister extends PureComponent {
           <View style={{ marginTop: '3.5%' }}/>
           <View style={row}>
             <View style={{ flex: 0.5 }}/>
-            <Text style={labelStyle}>School email:</Text>
-            <TextInput style={emailInputStyle} autoCapitalize="none" editable maxLength={40}
-              onChangeText={(email) => this.setState({ email })}
-              value={this.state.email} />
-            <Text style={supplementaryLabel}> @mylaurier.ca</Text>
-          </View>
-          <View style={row}>
-            <View style={{ flex: 0.5 }}/>
-            <Text style={labelStyle}>Password:</Text>
-            <TextInput style={passwordInputStyle} autoCapitalize="none" editable maxLength={40}
-              onChangeText={(password) => this.setState({ password })}
-              value={this.state.password} secureTextEntry />
+            <Text style={labelStyle}>Enter token:</Text>
+            <TextInput style={tokenInputStyle} autoCapitalize="none" editable maxLength={40}
+              onChangeText={(token) => this.setState({ token })}
+              value={this.state.text} secureTextEntry />
             <View style={{ flex: 0.75 }}/>
           </View>
           <View style={{ flex: 1, marginTop: '7%' }}>
@@ -132,7 +120,7 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    maxHeight: '11.5%',
+    maxHeight: '10%',
     backgroundColor: '#fff',
     borderRadius: 5,
     marginTop: '3%',
@@ -158,7 +146,7 @@ const styles = {
     borderRadius: 5,
     padding: 7.5,
   },
-  passwordInputStyle: {
+  tokenInputStyle: {
     color: '#000',
     flex: 8.25,
     height: 35,
@@ -170,9 +158,9 @@ const styles = {
   buttonStyle: {
     flexDirection: 'row',
     backgroundColor: '#fff',
-    height: '15%',
-    marginLeft: '25%',
-    marginRight: '25%',
+    height: '11%',
+    marginLeft: '20%',
+    marginRight: '20%',
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -189,4 +177,4 @@ const styles = {
   },
 };
 
-export default UserRegister;
+export default UserRegisterCode;

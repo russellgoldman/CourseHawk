@@ -8,8 +8,8 @@ class UserLogin extends PureComponent {
     password: '',
   };
 
-  click() {
-    console.log('clicked');
+  async login() {
+    console.log('Redux to call API to login');
   }
 
   render() {
@@ -45,7 +45,7 @@ class UserLogin extends PureComponent {
             <View style={{ flex: 0.75 }}/>
           </View>
           <View style={{ flex: 1 }}>
-            <TouchableOpacity style={buttonStyle}>
+            <TouchableOpacity style={buttonStyle} onPress={() => this.login() }>
               <Text style={{ fontSize: 18 }}>Login</Text>
             </TouchableOpacity>
           </View>
@@ -103,7 +103,7 @@ const styles = {
     padding: 7.5,
   },
   buttonStyle: {
-    marginTop: '5%',
+    marginTop: '7%',
     flexDirection: 'row',
     backgroundColor: '#fff',
     height: '12.5%',
