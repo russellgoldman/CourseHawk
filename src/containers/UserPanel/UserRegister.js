@@ -15,7 +15,7 @@ import { Actions } from 'react-native-router-flux';
 class UserRegister extends PureComponent {
 
   async register() {
-    that.props.registerSpinnerStart();
+    this.props.registerSpinnerStart();
 
     fetch('https://coursehawk.herokuapp.com/users/registerCode', {
       method: 'POST',
@@ -24,8 +24,8 @@ class UserRegister extends PureComponent {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: this.props.courseData.registerEmail + '@mylaurier.ca',
-        password: this.props.courseData.registerPassword,
+        email: this.props.userData.registerEmail + '@mylaurier.ca',
+        password: this.props.userData.registerPassword,
       }),
     })
     .then((response) => response.json())
@@ -36,7 +36,7 @@ class UserRegister extends PureComponent {
 
       var that = this;
       setTimeout(function () {
-        that.registerSpinnerOK({
+        that.props.registerSpinnerOK({
           email: '',
           password: '',
           error: '',
@@ -73,7 +73,7 @@ class UserRegister extends PureComponent {
 
   renderError() {
     if (this.props.userData.registerError !== '') {
-      return <Text style={styles.errorTextStyle}>{this.props.courseData.registerError}</Text>;
+      return <Text style={styles.errorTextStyle}>{this.props.userData.registerError}</Text>;
     } else {
       return (null);
     }

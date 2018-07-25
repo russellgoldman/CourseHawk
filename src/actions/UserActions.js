@@ -23,21 +23,21 @@ export const logout = () => {
   };
 };
 
-export const registerEmailChange = (email) {
+export const registerEmailChange = (email) => {
   return {
     type: REGISTER_EMAIL_CHANGE,
     payload: email,
-  }
+  };
 };
 
-export const registerPasswordChange = (password) {
+export const registerPasswordChange = (password) => {
   return {
     type: REGISTER_PASSWORD_CHANGE,
     payload: password,
   }
 };
 
-export const registerSpinnerStart = () {
+export const registerSpinnerStart = () => {
   return {
     type: REGISTER_SPINNER_START,
     payload: true,
@@ -45,7 +45,7 @@ export const registerSpinnerStart = () {
 }
 
 // obj = { email: '', password: '', error: '', loading: false }
-export const registerSpinnerOK = (obj) {
+export const registerSpinnerOK = (obj) => {
   return {
     type: REGISTER_SPINNER_OK,
     payload: obj,
@@ -53,7 +53,7 @@ export const registerSpinnerOK = (obj) {
 };
 
 // obj = { loading: false, error: 'Authentication Failed.' }
-export const registerSpinnerReject = (obj) {
+export const registerSpinnerReject = (obj) => {
   return {
     type: REGISTER_SPINNER_REJECT,
     payload: obj,
