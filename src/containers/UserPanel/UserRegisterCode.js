@@ -30,7 +30,6 @@ class UserRegisterCode extends PureComponent {
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      console.log(responseJson._id);
       var that = this;
       setTimeout(function () {
         that.setState(
