@@ -1,16 +1,80 @@
 import React, { PureComponent } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import BannerContainer from '../../common/BannerContainer';
+import { Spinner } from '../../common/Spinner';
 import { connect } from 'react-redux';
+import {
+  loginEmailChange,
+  loginPasswordChange,
+  loginSpinnerStart,
+  loginSpinnerOK,
+  loginSpinnerReject,
+} from '../../actions';
+import { Actions } from 'react-native-router-flux';
 
 class UserLogin extends PureComponent {
-  state = {
-    email: '',
-    password: '',
-  };
 
   async login() {
-    console.log('Redux to call API to login');
+    this.props.loginSpinnerStart();
+
+    fetch('https://coursehawk.herokuapp.com/users/login', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: this.props.userData.loginEmail + '@mylaurier.ca',
+        password: this.props.userData.loginPassword,
+      }),
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      const { hashedToken } = responseJson;
+
+      var that = this;
+      setTimeout(function () {
+        that.props.loginSpinnerOK({
+          email: '',
+          password: '',
+          error: '',
+          loading: false,
+        });
+      }, 1000);
+
+      Actions.userPanel();
+    })
+    .catch((e) => {
+      var that = this;
+      setTimeout(function () {
+        that.props.loginSpinnerReject({ loading: false, error: 'Authentication Failed.', });
+      }, 1000);
+    });
+  }
+
+  renderButton() {
+    if (this.props.userData.loginLoading) {
+      return (
+        <View style={styles.buttonStyle}>
+          <Spinner size='small' />;
+        </View>
+      );
+    }
+
+    // else, do what is below (as the default)
+    return (
+      <TouchableOpacity style={styles.buttonStyle} onPress={() => this.login() }>
+        <Text style={{ fontSize: 18 }}>Login</Text>
+      </TouchableOpacity>
+    );
+  }
+
+  renderError() {
+    if (this.props.userData.loginError !== '') {
+      return <Text style={styles.errorTextStyle}>{this.props.userData.loginError}</Text>;
+    } else {
+      return (null);
+    }
   }
 
   render() {
@@ -33,22 +97,21 @@ class UserLogin extends PureComponent {
             <View style={{ flex: 0.5 }}/>
             <Text style={labelStyle}>School email:</Text>
             <TextInput style={emailInputStyle} autoCapitalize="none" editable maxLength={40}
-              onChangeText={(email) => this.setState({ email })}
-              value={this.state.text} />
+              onChangeText={(email) => this.props.loginEmailChange(email)}
+              value={this.props.userData.loginEmail} />
             <Text style={supplementaryLabel}> @mylaurier.ca</Text>
           </View>
           <View style={row}>
             <View style={{ flex: 0.5 }}/>
             <Text style={labelStyle}>Password:</Text>
             <TextInput style={passwordInputStyle} autoCapitalize="none" editable maxLength={40}
-              onChangeText={(password) => this.setState({ password })}
-              value={this.state.text} secureTextEntry />
+              onChangeText={(password) => this.props.loginPasswordChange(password)}
+              value={this.props.userData.loginPassword} secureTextEntry />
             <View style={{ flex: 0.75 }}/>
           </View>
-          <View style={{ flex: 1 }}>
-            <TouchableOpacity style={buttonStyle} onPress={() => this.login() }>
-              <Text style={{ fontSize: 18 }}>Login</Text>
-            </TouchableOpacity>
+          <View style={{ flex: 1, marginTop: '7%' }}>
+            {this.renderError()}
+            {this.renderButton()}
           </View>
         </View>
         <View style={bannerContainerStyle}>
@@ -71,7 +134,7 @@ const styles = {
     maxHeight: '11.5%',
     backgroundColor: '#fff',
     borderRadius: 5,
-    marginTop: '3%',
+    marginTop: '4%',
     marginLeft: 11,
     marginRight: 11,
   },
@@ -104,10 +167,9 @@ const styles = {
     padding: 7.5,
   },
   buttonStyle: {
-    marginTop: '7%',
     flexDirection: 'row',
     backgroundColor: '#fff',
-    height: '12.5%',
+    height: '15%',
     marginLeft: '25%',
     marginRight: '25%',
     borderRadius: 10,
@@ -118,6 +180,25 @@ const styles = {
     flex: 1,
     justifyContent: 'flex-end',
   },
+  errorTextStyle: {
+    fontSize: 18,
+    alignSelf: 'center',
+    color: 'white',
+    marginBottom: '2%',
+  },
 };
 
-export default UserLogin;
+const mapStateToProps = state => {
+  return {
+    userData: state.userData,
+  };
+};
+
+export default connect(mapStateToProps,
+{
+  loginEmailChange,
+  loginPasswordChange,
+  loginSpinnerStart,
+  loginSpinnerOK,
+  loginSpinnerReject,
+})(UserLogin);
