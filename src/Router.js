@@ -9,6 +9,7 @@ import UserLogin from './containers/UserPanel/UserLogin';
 import UserRegister from './containers/UserPanel/UserRegister';
 import UserRegisterCode from './containers/UserPanel/UserRegisterCode';
 import Filter from './containers/SearchView/Filter';
+import Info from './containers/UserPanel/Info';
 import {
   search,
   user,
@@ -17,6 +18,7 @@ import {
   back,
   home,
   checkMark,
+  info,
 } from '../assets/images';
 
 const TabIcon = ({ selected, title }) => {
@@ -40,11 +42,11 @@ const RouterComponent = () => {
             component={DepartmentList}
             title="Courses by Department"
             navigationBarStyle={{ backgroundColor: '#fff' }}
-            leftButtonImage={user}
+            leftButtonImage={info}
             leftButtonIconStyle={{ height: 24.5, width: 24.5, marginLeft: 5, marginRight: 5 }}
             rightButtonImage={search}
             rightButtonIconStyle={{ height: 22.5, width: 22.5, marginLeft: 7, marginRight: 7 }}
-            onLeft={ () => Actions.userPanel() }
+            onLeft={ () => Actions.info() }
             onRight={ () => Actions.search() }
             initial
           />
@@ -93,6 +95,13 @@ const RouterComponent = () => {
             onRight={ () => {
               Actions.pop();
             } }
+          />
+          <Scene key="info"
+            component={Info}
+            title="App Info"
+            leftButtonImage={back}
+            leftButtonIconStyle={{ height: 20, width: 20, marginLeft: 5, marginRight: 5 }}
+            onLeft={ () => Actions.modal() }
           />
         </Scene>
         <Scene key="userPanel" modal={true}>

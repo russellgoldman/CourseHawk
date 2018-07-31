@@ -11,6 +11,7 @@ class UserRegisterCode extends PureComponent {
     token: '',
     error: '',
     loading: false,
+    titleText: 'An email has been sent to your Laurier Gmail account with a confirmation token. Please enter it below to complete the registration process.',
   };
 
   async register() {
@@ -35,6 +36,8 @@ class UserRegisterCode extends PureComponent {
         {
           error: '',
           loading: false,
+          globalLoggedIn: true,
+          globalUserId: responseJson._id,
         });
       }, 1000);
 
@@ -81,6 +84,7 @@ class UserRegisterCode extends PureComponent {
     const {
       outerContainer,
       row,
+      titleStyle,
       labelStyle,
       supplementaryLabel,
       tokenInputStyle,
@@ -91,12 +95,13 @@ class UserRegisterCode extends PureComponent {
       <View style={{ flex: 1, backgroundColor: '#5b01c4', }}>
         <View style={outerContainer}>
           <View style={{ marginTop: '3.5%' }}/>
+          <Text style={titleStyle}>{this.state.titleText}</Text>
           <View style={row}>
             <View style={{ flex: 0.5 }}/>
             <Text style={labelStyle}>Enter token:</Text>
             <TextInput style={tokenInputStyle} autoCapitalize="none" editable maxLength={40}
               onChangeText={(token) => this.setState({ token })}
-              value={this.state.text} secureTextEntry />
+              value={this.state.text} />
             <View style={{ flex: 0.75 }}/>
           </View>
           <View style={{ flex: 1, marginTop: '7%' }}>
@@ -127,6 +132,15 @@ const styles = {
     marginTop: '3%',
     marginLeft: 11,
     marginRight: 11,
+  },
+  titleStyle: {
+    marginLeft: '5%',
+    marginRight: '5%',
+    color: '#fff',
+    fontSize: 16,
+    marginTop: '1.5%',
+    marginBottom: '2.5%',
+    textAlign: 'justify',
   },
   labelStyle: {
     color: '#000',
@@ -159,7 +173,7 @@ const styles = {
   buttonStyle: {
     flexDirection: 'row',
     backgroundColor: '#fff',
-    height: '11%',
+    height: '13%',
     marginLeft: '20%',
     marginRight: '20%',
     borderRadius: 10,

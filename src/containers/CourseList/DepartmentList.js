@@ -22,7 +22,7 @@ class DepartmentList extends PureComponent {
 
     departmentArray = Object.keys(props.courseData).map((department) => {
       if (department.includes('Dept')) {
-        return department.split('(')[0];
+        return department.split('PC/CP')[0];
       } else if (department.includes('Program')) {
         return department.split('Program')[0].trim();
       } else if (department.includes('Option')) {

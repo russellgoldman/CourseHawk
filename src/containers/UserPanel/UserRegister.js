@@ -4,6 +4,7 @@ import BannerContainer from '../../common/BannerContainer';
 import { Spinner } from '../../common/Spinner';
 import { connect } from 'react-redux';
 import {
+  registerFirstNameChange,
   registerEmailChange,
   registerPasswordChange,
   registerSpinnerStart,
@@ -24,6 +25,7 @@ class UserRegister extends PureComponent {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        firstName: this.props.userData.registerFirstName,
         email: this.props.userData.registerEmail + '@mylaurier.ca',
         password: this.props.userData.registerPassword,
       }),
@@ -31,12 +33,11 @@ class UserRegister extends PureComponent {
     .then((response) => response.json())
     .then((responseJson) => {
       const { hashedToken } = responseJson;
-      console.log(responseJson);
-      console.log('it worked');
 
       var that = this;
       setTimeout(function () {
         that.props.registerSpinnerOK({
+          firstName: '',
           email: '',
           password: '',
           error: '',
@@ -85,6 +86,7 @@ class UserRegister extends PureComponent {
       row,
       labelStyle,
       supplementaryLabel,
+      firstNameInputStyle,
       emailInputStyle,
       passwordInputStyle,
       bannerContainerStyle,
@@ -94,6 +96,14 @@ class UserRegister extends PureComponent {
       <View style={{ flex: 1, backgroundColor: '#5b01c4', }}>
         <View style={outerContainer}>
           <View style={{ marginTop: '3.5%' }}/>
+          <View style={row}>
+            <View style={{ flex: 0.5 }}/>
+            <Text style={labelStyle}>First Name:</Text>
+            <TextInput style={firstNameInputStyle} autoCapitalize="none" editable maxLength={40}
+              onChangeText={(firstName) => this.props.registerFirstNameChange(firstName) }
+              value={this.props.userData.registerFirstName} />
+            <View style={{ flex: 0.75 }}/>
+          </View>
           <View style={row}>
             <View style={{ flex: 0.5 }}/>
             <Text style={labelStyle}>School email:</Text>
@@ -135,7 +145,7 @@ const styles = {
     maxHeight: '11.5%',
     backgroundColor: '#fff',
     borderRadius: 5,
-    marginTop: '3%',
+    marginTop: '4%',
     marginLeft: 11,
     marginRight: 11,
   },
@@ -148,6 +158,15 @@ const styles = {
     color: '#000',
     flex: 5,
     fontSize: 16,
+  },
+  firstNameInputStyle: {
+    color: '#000',
+    flex: 8.25,
+    height: 35,
+    borderColor: '#000',
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 7.5,
   },
   emailInputStyle: {
     color: '#000',
@@ -170,7 +189,7 @@ const styles = {
   buttonStyle: {
     flexDirection: 'row',
     backgroundColor: '#fff',
-    height: '15%',
+    height: '19%',
     marginLeft: '25%',
     marginRight: '25%',
     borderRadius: 10,
@@ -197,6 +216,7 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps,
 {
+  registerFirstNameChange,
   registerEmailChange,
   registerPasswordChange,
   registerSpinnerStart,
