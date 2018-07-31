@@ -31,7 +31,6 @@ class Info extends Component {
 
 const styles = {
   outerContainer: {
-    backgroundColor: '#5b01c4',
     flex: 1,
   },
   innerContainer: {
@@ -43,13 +42,12 @@ const styles = {
     marginTop: '30%',
     fontSize: 18,
     textAlign: 'center',
-    color: 'white',
   },
   emailTextStyle: {
     marginTop: '5%',
     fontSize: 18,
     fontWeight: 'bold',
-    color: 'white',
+    color: '#026BFE',
     textAlign: 'center',
   },
 };
