@@ -12,6 +12,9 @@ var _ = require('lodash');
 var helpers = {
   containsExactly: function (input, arg) {
     // for findCoursesContaining
+
+    // input = current course_code
+    // arg = searchStr
     var tempInput = input || '';
     if (typeof (tempInput) != 'object') {
       if (tempInput.indexOf(arg) === 0) {
@@ -55,7 +58,7 @@ class SearchView extends PureComponent {
       return (
         <View style={{ paddingTop: 50, marginLeft: '5%', marginRight: '5%', }}>
           <Text style={{ textAlign: 'center', fontSize: 18, lineHeight: 30 }}>
-            To get started, enter a course code and / or access the advanced filters menu in the toolbar.
+            To get started, enter a course code.
           </Text>
         </View>
       );

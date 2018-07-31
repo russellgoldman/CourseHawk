@@ -7,6 +7,7 @@ import filter from './filter.png';
 import back from './back.png';
 import home from './home.png';
 import checkMark from './checkMark.png';
+import info from './info.png';
 
 export {
   expandArrow,
@@ -18,4 +19,5 @@ export {
   back,
   home,
   checkMark,
+  info,
 };

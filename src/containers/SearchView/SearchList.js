@@ -94,7 +94,7 @@ const styles = {
     color: '#000',
     paddingLeft: '3%',
     flexWrap: 'wrap',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 };
 
