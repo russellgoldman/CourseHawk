@@ -18,7 +18,7 @@ class Info extends Component {
       <View style={outerContainer}>
         <View style={innerContainer}>
           <Text style={suggestionTextStyle}>{`Have suggestions for CourseHawk? We're always ` +
-          ` looking for ways to make the app better! Please send us an email at...`}
+          `looking for ways to make the app better! Please send us an email at...`}
           </Text>
           <TouchableOpacity onPress={ () => Linking.openURL('mailto:suggestions.coursehawk@gmail.com') }>
             <Text style={emailTextStyle}>{`suggestions.coursehawk@gmail.com`}</Text>

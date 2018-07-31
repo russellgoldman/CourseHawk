@@ -78,8 +78,9 @@ class CourseListGrid extends PureComponent {
       return (
         <View style={coursesContainer}>
           <FlatList
+            disableVirtualization={false}
             removeClippedSubviews={true}
-            updateCellsBatchingPeriod={100}
+            updateCellsBatchingPeriod={200}
             initialNumToRender={15}
             columnWrapperStyle={rowContainer}
             data={this.props.courseData[this.props.index]}

@@ -124,8 +124,9 @@ class DepartmentList extends PureComponent {
       <View style={{ flex: 1 }}>
         <View style={flatListContainer}>
           <FlatList
+            disableVirtualization={false}
             removeClippedSubviews={true}
-            updateCellsBatchingPeriod={100}
+            updateCellsBatchingPeriod={200}
             initialNumToRender={15}
             style={{ marginTop: '7.5%' }}
             data={departmentArray}
