@@ -20,4 +20,4 @@ Searching for courses to take through traditional academic calendars is a frustr
 CourseHawk hopes to alleviate this by creating a central hub where students at Wilfrid Laurier University (or anyone that has an iOS or Android phone) can find their courses in an organized and helpful manner.
 
 ## Technology
-CourseHawk is built with React Native, Redux, NodeJS, MongoDB, Mocha, and Python. Special thanks to http://novicelab.org/jsonabc/ for their alphabetical JSON converter, it was invaluable.
+CourseHawk is built with React Native, Redux, NodeJS, MongoDB, and Python (BeautifulSoup). Special thanks to http://novicelab.org/jsonabc/ for their alphabetical JSON converter, it was invaluable.
