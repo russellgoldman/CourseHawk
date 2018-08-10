@@ -12,7 +12,7 @@ Front-End: https://github.com/russellgoldman/CourseHawk
 Back-End: **Hidden to conceal private data for app, please contact if interested**
 
 ## Hidden Data
-I have purposely removed the CourseData JSON object to protect against code plagiarism. If you would like to view it, please fill out the contact form at the bottom of my [website](https://russellgoldman.me) and request it in the Message box. Incomplete contact forms will be discarded. Thanks!
+I have purposely removed the **CourseData JSON object** and **Python Web Scraper code** to protect against code plagiarism. If you would like to view either of them, please fill out the contact form at the bottom of my [website](https://russellgoldman.me) and request it in the Message box. Incomplete contact forms will be discarded. Thanks!
 
 ## Inspiration
 Searching for courses to take through traditional academic calendars is a frustrating process. Having to navigate to a new page through countless departments to get an idea of certain courses can quickly become a headache.
