@@ -1,4 +1,4 @@
-<img src="https://user-images.githubusercontent.com/15056496/43810157-378e4eec-9a84-11e8-8d99-263f5c6f241d.png" width="150"  />
+<img src="https://user-images.githubusercontent.com/15056496/43984195-10131320-9ccd-11e8-802c-c59c94063869.png" width="150"  />
 
 # CourseHawk
 Effortless course search for students at Wilfrid Laurier University
