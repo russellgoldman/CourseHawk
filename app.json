@@ -1,5 +1,16 @@
 {
   "expo": {
+    "name": "CourseHawk",
+    "icon": "./assets/images/CourseHawkLogo.png",
+    "version": "1.0.0",
+    "description": "Searching for courses to take through traditional academic calendars is a frustrating process. Having to navigate to a new page through countless departments to get an idea of certain courses can quickly become a headache. CourseHawk hopes to alleviate this by creating a central hub where students at Wilfrid Laurier University (or anyone that has an iOS or Android phone) can find their courses in an organized and helpful manner.",
+    "ios": {
+      "bundleIdentifier": "com.russellgoldman.coursehawk"
+    },
+    "android": {
+      "package": "com.russellgoldman.coursehawk"
+    },
+    "slug": "course-hawk",
     "sdkVersion": "27.0.0",
     "splash": {
       "image": "./assets/images/splash.png",
