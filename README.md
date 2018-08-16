@@ -3,8 +3,10 @@
 # CourseHawk
 Effortless course search for students at Wilfrid Laurier University
 
+<!---
 <img src="https://user-images.githubusercontent.com/15056496/43810282-d6aa046c-9a84-11e8-8487-37668479681e.png" width="250" /> <img src="https://user-images.githubusercontent.com/15056496/43809870-c8ffa9e0-9a82-11e8-975d-c9569d6bff33.png" width="250" /> <img src="https://user-images.githubusercontent.com/15056496/43809871-c96f9e6c-9a82-11e8-8030-dacefd79789f.png" width="250" />  
 <img src="https://user-images.githubusercontent.com/15056496/43809872-c986ead6-9a82-11e8-8af9-bb4f5efff20c.png" width="250" /> <img src="https://user-images.githubusercontent.com/15056496/43809873-c996c280-9a82-11e8-95b5-725d4a9011c2.png" width="250" /> <img src="https://user-images.githubusercontent.com/15056496/43809874-c9aa31da-9a82-11e8-8f69-9cd846a3c662.png" width="250" />
+-->
 
 ## Git Repositories
 Front-End: https://github.com/russellgoldman/CourseHawk
