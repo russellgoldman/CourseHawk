@@ -17,7 +17,7 @@ I have purposely removed the **CourseData JSON object** and **Python Web Scraper
 ## Inspiration
 Searching for courses to take through traditional academic calendars is a frustrating process. Having to navigate to a new page through countless departments to get an idea of certain courses can quickly become a headache.
 
-CourseHawk hopes to alleviate this by creating a central hub where students at Wilfrid Laurier University can find their courses in an organized and helpful manner via their iOS or Android devices.
+CourseHawk hopes to alleviate this by creating a central hub where students at Wilfrid Laurier University can find their courses in an organized and helpful manner via their iOS and/or Android devices.
 
 ## Technology
 CourseHawk is built with React Native, Redux, NodeJS, MongoDB, and Python (BeautifulSoup). Special thanks to http://novicelab.org/jsonabc/ for their alphabetical JSON converter, it was invaluable.
